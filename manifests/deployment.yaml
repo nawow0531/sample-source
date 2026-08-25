@@ -1,26 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-argocd
-  namespace: demo
-  labels:
-    app: hello-argocd
+  name: sample-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-argocd
+      app: sample-app
   template:
     metadata:
       labels:
-        app: hello-argocd
+        app: sample-app
     spec:
       containers:
-      - name: web
-        image: docker.io/library/nginx:1.27-alpine
+      - name: sample-app
+        image: 10.30.10.244/image-build/sample-app:1
+        imagePullPolicy: Always
         ports:
-        - containerPort: 80
-        env:
-        - name: MESSAGE
-          value: "Hello ArgoCD from OCP!"
-
+        - containerPort: 8080
