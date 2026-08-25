@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+  labels:
+    app: nginx
+  name: nginx
+  namespace: demo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: nginx-test.example.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: hello-argocd
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
