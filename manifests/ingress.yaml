@@ -1,22 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: sample-app
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
-  labels:
-    app: nginx
-  name: nginx
-  namespace: demo
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
-  - host: nginx-test.example.com
+  - host: sample-app.example.com
     http:
       paths:
-      - backend:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
-            name: hello-argocd
+            name: sample-app-service
             port:
               number: 80
-        path: /
-        pathType: Prefix
