@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app-green
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: sample-app
+      slot: green
+
+  template:
+    metadata:
+      labels:
+        app: sample-app
+        slot: green
+
+    spec:
+      containers:
+      - name: sample-app
+        image: 10.30.10.244/image-build/sample-app:10
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 8080
