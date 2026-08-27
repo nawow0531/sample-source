@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+      slot: blue
+  template:
+    metadata:
+      labels:
+        app: sample-app
+        slot: blue     ## 추후 구분자
+    spec:
+      containers:
+      - name: sample-app
+        image: 10.30.10.244/image-build/sample-app:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
