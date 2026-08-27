@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: sample-app
-    slot: blue
+    slot: green
   ports:
   - protocol: TCP
     port: 80
